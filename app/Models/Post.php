@@ -10,7 +10,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Post extends Model
 {
     use HasFactory, SoftDeletes;
-
+    
+    public function getPaginateByLimit(int $limit_count = 20)
+    {
+        return $this->orderby('updated_at', 'DESC')->paginate($limit_count);
+    }
+    
     // 投稿が属するユーザー
     public function user(): BelongsTo
     {
