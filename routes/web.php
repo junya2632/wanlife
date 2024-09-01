@@ -30,4 +30,7 @@ Route::middleware('auth')->group(function () {
 // PostControllerのリソースルートを定義
 Route::resource('posts', PostController::class);
 
+// '/posts/{対象データのID}'にGetリクエストが来たら、PostControllerのshowメソッドを実行する。
+Route::get('/posts/{post}', [PostController::class, 'show']);
+
 require __DIR__.'/auth.php';
