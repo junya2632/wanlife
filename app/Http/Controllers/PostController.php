@@ -9,7 +9,7 @@ class PostController extends Controller
     // 投稿の一覧を表示
     public function index()
     {
-        return view('posts.index'); // 投稿一覧のビューを表示
+        return view('posts.index')->with(['posts' => $post->getPaginateByLimit()]); // 投稿一覧のビューを表示
     }
 
     // 新しい投稿の作成フォームを表示
