@@ -15,14 +15,14 @@ class Post extends Model
         'spot_name',
         'address',
         'description',
-        'category',
+        'category_id',
         'photo',
-        'blog'
+        'blog',
         ];
     
     public function getPaginateByLimit(int $limit_count = 20)
     {
-        return $this->orderby('updated_at', 'DESC')->paginate($limit_count);
+        return $this::with('category')->orderby('updated_at', 'DESC')->paginate($limit_count);
     }
     
     // 投稿が属するユーザー

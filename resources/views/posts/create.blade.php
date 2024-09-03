@@ -22,15 +22,13 @@
             <h2>投稿の見出し</h2>
             <textarea name="post[description]" placeholder="見出し">{{ old('post.description') }}</textarea>
             <p class="description__error" style="color:red">{{ $errors->first('post.description') }}</p>
-            <h2>カテゴリーを選択</h2>
-            <select name="post[category]">
-                <option value="1">カフェ</option>
-                <option value="2">公園</option>
-                <option value="3">レジャー施設</option>
-                <option value="4">レストラン</option>
-                <option value="5">旅館</option>
-                <option value="6">その他</option>
-            </select>
+            <div class="category">
+                <h2>カテゴリーを選択</h2>
+                <select name="post[category_id]">
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                </select>
+            </div>
             <h2>写真をアップロード</h2>
             <p class='post[photo]'></p>
             <h2>スポットについて</h2>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
+use App\Models\Category;
 
 class PostController extends Controller
 {
@@ -14,9 +15,9 @@ class PostController extends Controller
     }
 
     // 新しい投稿の作成フォームを表示
-    public function create()
+    public function create(Category $category)
     {
-        return view('posts.create'); // 投稿作成フォームのビューを表示
+        return view('posts.create')->with(['categories' => $category->get()]);
     }
 
     // 新しい投稿をデータベースに保存
