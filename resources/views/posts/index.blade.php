@@ -15,6 +15,7 @@
         <div class='posts'>
             @foreach($posts as $post)
                 <div class='post'>
+                    <a href="">{{ $post->category->name }}</a>
                     <a href="/posts/{{ $post->id }}"<h2 class='spot_name'>{{ $post->spot_name }}</h2></a>
                     <h3 class='address'>{{ $post->address }}</h3>
                     <!-- ここに写真 -->
