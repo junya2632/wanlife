@@ -14,9 +14,7 @@
         <div class='content'>
             <div class='content_post'>
                 <h3 class='address'>{{ $post->address }}</h3>
-                 @if ($post->photo)
-                    <img src="{{ asset('storage/' . $post->photo) }}" alt="{{ $post->spot_name }}の写真">
-                 @endif
+                 <!-- ここに写真を載せる -->
                 <p class='body'>{{$spot->body}}</p>
             </div>
         </div>

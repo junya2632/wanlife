@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
@@ -19,9 +20,11 @@ class PostController extends Controller
     }
 
     // 新しい投稿をデータベースに保存
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
-        // バリデーションと投稿の保存処理をここに記述
+        $input = $request['post'];
+        $post->fill($input)->save();
+        return redirect('/posts/' . $post->id);
     }
 
     // 特定の投稿の詳細を表示
