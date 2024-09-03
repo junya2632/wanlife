@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('favorites', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('comments', function (Blueprint $table) {
+            $table->foreignId('post_id')->constrained()->onDelete('cascade');
         });
     }
 
@@ -22,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('favorites');
+        Schema::table('comments', function (Blueprint $table) {
+            //
+        });
     }
 };
