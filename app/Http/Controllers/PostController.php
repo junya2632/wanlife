@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
+use App\Models\Category;
 
 class PostController extends Controller
 {
@@ -13,21 +15,23 @@ class PostController extends Controller
     }
 
     // 新しい投稿の作成フォームを表示
-    public function create()
+    public function create(Category $category)
     {
-        return view('posts.create'); // 投稿作成フォームのビューを表示
+        return view('posts.create')->with(['categories' => $category->get()]);
     }
 
     // 新しい投稿をデータベースに保存
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
-        // バリデーションと投稿の保存処理をここに記述
+        $input = $request['post'];
+        $post->fill($input)->save();
+        return redirect('/posts/' . $post->id);
     }
 
     // 特定の投稿の詳細を表示
-    public function show($id)
+    public function show(Post $post)
     {
-        return view('posts.show', compact('id')); // 投稿の詳細ビューを表示
+        return view('posts.show')->with(['post' => $post]); // 投稿の詳細ビューを表示
     }
 
     // 投稿の編集フォームを表示

@@ -17,6 +17,25 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PostController::class, 'index']);
 
+// PostControllerのリソースルートを定義
+Route::resource('posts', PostController::class);
+
+//投稿作成表示用ルーティング
+Route::get('/posts/create', [PostController::class, 'create']);
+
+// '/posts/{対象データのID}'にGetリクエストが来たら、PostControllerのshowメソッドを実行する。
+Route::get('/posts/{post}', [PostController::class, 'show']);
+
+//ブログ投稿作成実行用ルーティング
+Route::post('/post', [PostController::class, 'store']);// PostControllerのリソースルートを定義
+Route::resource('posts', PostController::class);
+
+//投稿作成表示用ルーティング
+Route::get('/posts/create', [PostController::class, 'create']);
+
+// '/posts/{対象データのID}'にGetリクエストが来たら、PostControllerのshowメソッドを実行する。
+Route::get('/posts/{post}', [PostController::class, 'show']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -26,8 +45,5 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-// PostControllerのリソースルートを定義
-Route::resource('posts', PostController::class);
 
 require __DIR__.'/auth.php';

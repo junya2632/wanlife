@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('photos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('post_id')->constrained()->onDelete('cascade');
-            $table->string('photo_path');  // 写真のパスを保存するカラム
             $table->timestamps();
         });
     }

@@ -11,9 +11,18 @@ class Post extends Model
 {
     use HasFactory, SoftDeletes;
     
+    protected $fillable = [
+        'spot_name',
+        'address',
+        'description',
+        'category_id',
+        'photo',
+        'blog',
+        ];
+    
     public function getPaginateByLimit(int $limit_count = 20)
     {
-        return $this->orderby('updated_at', 'DESC')->paginate($limit_count);
+        return $this::with('category')->orderby('updated_at', 'DESC')->paginate($limit_count);
     }
     
     // 投稿が属するユーザー
