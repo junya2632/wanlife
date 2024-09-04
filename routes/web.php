@@ -27,7 +27,7 @@ Route::get('/posts/create', [PostController::class, 'create']);
 Route::get('/posts/{post}', [PostController::class, 'show']);
 
 //ブログ投稿作成実行用ルーティング
-Route::post('/post', [PostController::class, 'store']);// PostControllerのリソースルートを定義
+Route::post('/posts', [PostController::class, 'store']);// PostControllerのリソースルートを定義
 Route::resource('posts', PostController::class);
 
 //投稿作成表示用ルーティング
