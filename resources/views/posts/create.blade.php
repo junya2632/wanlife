@@ -27,10 +27,10 @@
                 <select name="post[category_id]">
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
                 </select>
             </div>
             <h2>写真をアップロード</h2>
-            <p class='post[photo]'></p>
             <h2>スポットについて</h2>
             <textarea name="post[blog]" placeholder="詳細を記入してください">{{ old('post.blog') }}</textarea>
             <p class="blog__error" style="color:red">{{ $errors->first('post.blog') }}</p>
