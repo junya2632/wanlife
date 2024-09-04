@@ -10,7 +10,7 @@ use App\Models\Category;
 class PostController extends Controller
 {
     // 投稿の一覧を表示
-    public function index()
+    public function index(Post $post)
     {
         return view('posts.index')->with(['posts' => $post->getPaginateByLimit()]); // 投稿一覧のビューを表示
     }
