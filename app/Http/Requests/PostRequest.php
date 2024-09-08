@@ -17,7 +17,7 @@ class PostRequest extends FormRequest
             'post.spot_name' => 'required|string|max:100',
             'post.address' => 'required|string|max:200',
             'post.description' => 'required|string|max:2000',
-            'post.blog' => 'required|string',
+            'post.body' => 'required|string',
         ];
     }
 }
