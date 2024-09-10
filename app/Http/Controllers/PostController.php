@@ -51,8 +51,9 @@ class PostController extends Controller
     }
 
     // 投稿を削除
-    public function destroy($id)
+    public function delete(Post $post)
     {
-        // 投稿の削除処理をここに記述
+        $post->delete();
+        return redirect('/');// 投稿の削除処理をここに記述
     }
 }
