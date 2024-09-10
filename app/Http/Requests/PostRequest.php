@@ -14,8 +14,8 @@ class PostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'post.spot_name' => 'required|string|max:100',
-            'post.address' => 'required|string|max:200',
+            'post.spot_name' => 'required|string|max:255',
+            'post.address' => 'required|string|max:255',
             'post.description' => 'required|string|max:2000',
             'post.body' => 'required|string',
         ];

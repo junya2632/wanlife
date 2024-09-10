@@ -10,19 +10,24 @@
 
     </head>
     <body class="antialiased">
-        <h1 class='spot_name'>{{ $post->spot_name }}</h1>
-        <div class='content'>
-            <div class='content_post'>
-                <h3 class='address'>{{ $post->address }}</h3>
-                 <!-- ここに写真を載せる -->
-                <p class='body'>{{$spot->body}}</p>
+        <x-app-layout>
+            <x-slot name="header">
+                show
+            </x-slot>
+            <h1 class='spot_name'>{{ $post->spot_name }}</h1>
+            <div class='content'>
+                <div class='content_post'>
+                    <h3 class='address'>{{ $post->address }}</h3>
+                     <!-- ここに写真を載せる -->
+                    <p class='body'>{{$post->body}}</p>
+                </div>
             </div>
-        </div>
-        <div class='update'>
-            <a href="/">編集</a>
-        </div>
-        <div class='footer'>
-            <a href="/">戻る</a>
-        </div>
+            <div class='update'>
+                <a href="/">編集</a>
+            </div>
+            <div class='footer'>
+                <a href="/">戻る</a>
+            </div>
+        </x-app-layout>
     </body>
 </html>

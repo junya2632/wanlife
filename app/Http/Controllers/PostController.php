@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -24,9 +25,11 @@ class PostController extends Controller
     // 新しい投稿をデータベースに保存
     public function store(Request $request, Post $post)
     {
-        $input = $request['post'];
-        $post->fill($input)->save();
-        return redirect('/posts/' . $post->id);
+        // $input = $request['post'];
+        // $input['user_id'] = Auth::id();
+        // $post->fill($input)->save();
+        // return redirect('/posts/' . $post->id);
+        dd($request->all()); // データを表示して確認
     }
 
     // 特定の投稿の詳細を表示
