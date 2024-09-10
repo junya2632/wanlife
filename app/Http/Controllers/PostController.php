@@ -23,13 +23,12 @@ class PostController extends Controller
     }
 
     // 新しい投稿をデータベースに保存
-    public function store(Request $request, Post $post)
+    public function store(PostRequest $request, Post $post)
     {
-        // $input = $request['post'];
-        // $input['user_id'] = Auth::id();
-        // $post->fill($input)->save();
-        // return redirect('/posts/' . $post->id);
-        dd($request->all()); // データを表示して確認
+        $input = $request['post'];
+        $input['user_id'] = Auth::id();
+        $post->fill($input)->save();
+        return redirect('/posts/' . $post->id);
     }
 
     // 特定の投稿の詳細を表示
@@ -41,7 +40,8 @@ class PostController extends Controller
     // 投稿の編集フォームを表示
     public function edit(Post $post)
     {
-        return view('posts.edit')->with(['post' => $post]); // 投稿編集フォームのビューを表示
+        $categories = Category::all();
+        return view('posts.edit')->with(['post' => $post, 'categories' => $categories]); // 投稿編集フォームのビューを表示
     }
 
     // 編集された投稿をデータベースに保存
