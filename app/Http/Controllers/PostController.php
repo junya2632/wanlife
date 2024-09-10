@@ -36,15 +36,18 @@ class PostController extends Controller
     }
 
     // 投稿の編集フォームを表示
-    public function edit($id)
+    public function edit(Post $post)
     {
-        return view('posts.edit', compact('id')); // 投稿編集フォームのビューを表示
+        return view('posts.edit')->with(['post' => $post]); // 投稿編集フォームのビューを表示
     }
 
     // 編集された投稿をデータベースに保存
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, Post $post)
     {
-        // バリデーションと投稿の更新処理をここに記述
+        $input_post = $request['post'];
+        $post->fill($input_post)->save();
+        
+        return redirect('/posts/' . $post->id);
     }
 
     // 投稿を削除
