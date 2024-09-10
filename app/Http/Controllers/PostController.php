@@ -25,11 +25,10 @@ class PostController extends Controller
     // 新しい投稿をデータベースに保存
     public function store(Request $request, Post $post)
     {
-        // $input = $request['post'];
-        // $input['user_id'] = Auth::id();
-        // $post->fill($input)->save();
-        // return redirect('/posts/' . $post->id);
-        dd($request->all()); // データを表示して確認
+        $input = $request['post'];
+        $input['user_id'] = Auth::id();
+        $post->fill($input)->save();
+        return redirect('/posts/' . $post->id);
     }
 
     // 特定の投稿の詳細を表示
