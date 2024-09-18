@@ -32,7 +32,10 @@ Route::middleware('auth')->group(function () {
 
 Route::group(['middleware' => ['auth']], function(){
     // ルーティングの設定
-    Route::get('/', [PostController::class, 'index'])->name('index');
+    Route::get('/posts/index', [PostController::class, 'index'])->name('index');
+    
+    //検索された時のルーティング
+    Route::get('/search', [PostController::class, 'search'])->name('posts.search');
     
     // PostControllerのリソースルートを定義
     Route::resource('posts', PostController::class);

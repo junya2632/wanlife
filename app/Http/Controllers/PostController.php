@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
+use App\Http\Requests\SearchRequest;
 use App\Models\Post;
 use App\Models\Photo;
 use App\Models\Category;
@@ -15,9 +16,24 @@ class PostController extends Controller
     // 投稿の一覧を表示
     public function index(Post $post)
     {
-        return view('posts.index')->with(['posts' => $post->getPaginateByLimit()]); // 投稿一覧のビューを表示
+        return view('posts.index')->with(['posts' => $post->getPaginateByLimit(20), 'keyword' => ""]); // 投稿一覧のビューを表示
     }
-
+    
+    public function search(Post $post, Request $request)
+    {
+        $keyword = $request->input('keyword');
+        
+        $query = Post::query();
+        
+        if(!empty($keyword)) {
+            $query->where('spot_name', 'LIKE', "%{$keyword}%")->orWhere('address', 'LIKE', "%{$keyword}%");
+        }
+        
+        $post = $query->paginate(20);
+        
+        return view('posts.index')->with(['posts' => $post, 'keyword' => $keyword]);
+    }
+    
     // 新しい投稿の作成フォームを表示
     public function create(Category $category)
     {
@@ -36,7 +52,7 @@ class PostController extends Controller
         $input_photo = ['post_id' => $post->id];
         $input_photo += ['photo_url' => $photo_url];
         $photo->fill($input_photo)->save();
-        return redirect('/posts/' . $post->id);
+        return redirect('/posts/index' . $post->id);
     }
 
     // 特定の投稿の詳細を表示
@@ -58,7 +74,7 @@ class PostController extends Controller
         $input_post = $request['post'];
         $post->fill($input_post)->save();
         
-        return redirect('/posts/' . $post->id);
+        return redirect('/posts/index' . $post->id);
     }
 
     // 投稿を削除
