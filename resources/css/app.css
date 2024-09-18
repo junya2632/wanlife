@@ -17,6 +17,7 @@ h1{
 }
 
 .index_title{
+    background-color: #f5deb3;
     margin:5px;
     display:flex;
     justify-content: space-between;
@@ -37,6 +38,7 @@ h1{
     color:#ff0000;
 }
 
-.post{
+.antialiased{
     background-color: #f5deb3;
+    margin:10px;
 }
