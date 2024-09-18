@@ -15,7 +15,7 @@
                 create
             </x-slot>
             <h1>新しいスポットを追加</h1>
-            <form action="/posts" method="POST">
+            <form action="/posts" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="spot_name">
                     <h2>スポット名</h2>
@@ -41,7 +41,8 @@
                     </select>
                 </div>
                 <div class="photo">
-                <h2>写真をアップロード</h2>
+                    <h2>写真をアップロード</h2>
+                    <input type="file" name="photo">
                 </div>
                 <div class="body">
                 <h2>スポットについて</h2>

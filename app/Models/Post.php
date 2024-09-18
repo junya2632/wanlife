@@ -27,31 +27,31 @@ class Post extends Model
     }
     
     // 投稿が属するユーザー
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
     // 投稿が属するカテゴリ
-    public function category(): BelongsTo
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
     // 投稿が持つコメント
-    public function comments(): HasMany
+    public function comments()
     {
         return $this->hasMany(Comment::class);
     }
 
     // 投稿が持つ写真
-    public function photos(): HasMany
+    public function photos()
     {
         return $this->hasMany(Photo::class);
     }
 
     // 投稿のお気に入り
-    public function favorites(): HasMany
+    public function favorites()
     {
         return $this->hasMany(Favorite::class);
     }
