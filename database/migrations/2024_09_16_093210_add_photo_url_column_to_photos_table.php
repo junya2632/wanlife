@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('photos', function (Blueprint $table) {
-            $table->foreignId('post_id')->constrained("posts")->onDelete('cascade');
+            $table->string('photo_url');
         });
     }
 

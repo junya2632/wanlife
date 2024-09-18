@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.post_images{
+    width:100px;
+}
+
+h1{
+    font-size:40px;
+    font-weight:bold;
+}
+
+.create_post{
+    color:#0000ff;
+    text-decoration:underline;
+}
+
+.index_title{
+    margin:5px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.posts{
+    margin:5px;
+    display: flex;
+}
+
+.spot_name{
+    font-size:30px;
+    font-weight:bold;
+}
+
+.delete{
+    color:#ff0000;
+}
+
+.post{
+    background-color: #f5deb3;
+}

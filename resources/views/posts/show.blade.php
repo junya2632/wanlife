@@ -18,7 +18,11 @@
             <div class='content'>
                 <div class='content_post'>
                     <h3 class='address'>{{ $post->address }}</h3>
-                     <!-- ここに写真を載せる -->
+                    <div class="photo">
+                        @foreach ($post->photos as $photo)
+                            <img class="post_images" src="{{ $photo->photo_url }}" alt="画像がありません"> 
+                        @endforeach
+                    </div>
                     <p class='body'>{{$post->body}}</p>
                 </div>
             </div>

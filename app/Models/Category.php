@@ -15,5 +15,10 @@ class Category extends Model
     {
         return $this->hasMany(Post::class);
     }
+    
+    public function getByCategory(int $limit_count = 20)
+    {
+        return $this->posts()->with('category')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
 }
 

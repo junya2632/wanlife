@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use App\Models\Photo;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
+use Cloudinary;
 
 class PostController extends Controller
 {
@@ -23,11 +25,17 @@ class PostController extends Controller
     }
 
     // 新しい投稿をデータベースに保存
-    public function store(PostRequest $request, Post $post)
+    public function store(PostRequest $request, Post $post, Photo $photo)
     {
+        $photo_url = Cloudinary::upload($request->file('photo')->getRealPath())->getSecurePath();//cloudinaryへ画像を送信し、画像のURLを$image_urlに代入
+        
         $input = $request['post'];
         $input['user_id'] = Auth::id();
         $post->fill($input)->save();
+        
+        $input_photo = ['post_id' => $post->id];
+        $input_photo += ['photo_url' => $photo_url];
+        $photo->fill($input_photo)->save();
         return redirect('/posts/' . $post->id);
     }
 

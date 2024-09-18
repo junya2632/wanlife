@@ -14,28 +14,22 @@
             <x-slot name="header">
                 　index
             </x-slot>
-            <div class="index_title">
-                <h1>ワンライフ</h1>
-                <a class="create_post" href="/posts/create">スポットを投稿</a>
-            </div>
+            <h1>ワンライフ</h1>
+            <a href="/posts/create">スポットを投稿</a>
             <div class='posts'>
                 @foreach($posts as $post)
                     <div class='post'>
                         <p><a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a></p>
-                        <p><a href="/posts/{{ $post->id }}" class='spot_name'>{{ $post->spot_name }}</a></p>
+                        <p><a href="/posts/{{ $post->id }}"<h2 class='spot_name'>{{ $post->spot_name }}</h2></a></p>
                         <h3 class='address'>{{ $post->address }}</h3>
-                        <div class="photo">
-                            @foreach ($post->photos as $photo)
-                                <img class="post_images" src="{{ $photo->photo_url }}" alt="画像がありません"> 
-                            @endforeach
-                        </div>
+                        <!-- ここに写真 -->
                         <p class='description'>{{$post->description}}</p>
-                        <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button  class="delete" type="button" onclick="deletePost({{ $post->id }})">delete</button> 
-                        </form>
                     </div>
+                    <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" onclick="deletePost({{ $post->id }})">delete</button> 
+                    </form>
                 @endforeach
             </div>
             <div class='paginate'>{{ $posts->links() }}</div>
