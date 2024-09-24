@@ -38,7 +38,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/search', [PostController::class, 'search'])->name('posts.search');
     
     // PostControllerのリソースルートを定義
-    Route::resource('posts', PostController::class);
     
     //投稿作成表示用ルーティング
     Route::get('/posts/create', [PostController::class, 'create']);
@@ -48,7 +47,6 @@ Route::group(['middleware' => ['auth']], function(){
     
     //ブログ投稿作成実行用ルーティング
     Route::post('/posts', [PostController::class, 'store']);// PostControllerのリソースルートを定義
-    Route::resource('posts', PostController::class);
     
     //投稿作成表示用ルーティング
     Route::get('/posts/create', [PostController::class, 'create']);
@@ -61,7 +59,10 @@ Route::group(['middleware' => ['auth']], function(){
     
     Route::delete('/posts/{post}', [PostController::class, 'delete']);
     
+    Route::get('/categories/search', [CategoryController::class, 'search'])->name('categories.search');
+    
     Route::get('/categories/{category}', [CategoryController::class,'index']);
+    
 });
 
 require __DIR__.'/auth.php';

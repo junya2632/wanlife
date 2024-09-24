@@ -19,7 +19,7 @@ class PostController extends Controller
         return view('posts.index')->with(['posts' => $post->getPaginateByLimit(20), 'keyword' => ""]); // 投稿一覧のビューを表示
     }
     
-    public function search(Post $post, Request $request)
+    public function search(Request $request, Post $post)
     {
         $keyword = $request->input('keyword');
         
@@ -52,7 +52,7 @@ class PostController extends Controller
         $input_photo = ['post_id' => $post->id];
         $input_photo += ['photo_url' => $photo_url];
         $photo->fill($input_photo)->save();
-        return redirect('/posts/index' . $post->id);
+        return redirect('/posts/' . $post->id);
     }
 
     // 特定の投稿の詳細を表示
@@ -81,6 +81,6 @@ class PostController extends Controller
     public function delete(Post $post)
     {
         $post->delete();
-        return redirect('/');// 投稿の削除処理をここに記述
+        return redirect('/posts/index');// 投稿の削除処理をここに記述
     }
 }
