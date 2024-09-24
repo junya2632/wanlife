@@ -52,7 +52,7 @@
                 <input type="submit" value="スポットを追加">
             </form>
             <div class='footer'>
-                <a href="/">戻る</a>
+                <a href="/posts/index">戻る</a>
             </div>
         </x-app-layout>
     </body>

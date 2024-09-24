@@ -17,6 +17,12 @@
             <div class="index_title">
                 <h1>ワンライフ</h1>
                 <a class="create_post" href="/posts/create">スポットを投稿</a>
+                <div>
+                    <form action="{{ route('posts.search') }}" method="GET">
+                        <input type="text" name="keyword" value="{{ $keyword }}">
+                        <input type="submit" value="検索">
+                    </form>
+                </div>
             </div>
             <div class='posts'>
                 @foreach($posts as $post)
