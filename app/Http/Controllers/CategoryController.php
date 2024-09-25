@@ -25,15 +25,15 @@ class CategoryController extends Controller
     {
         $keyword = $request->input('keyword');
         
-        $query = Post::where('category_id', $category->id);
+        $query = Post::query();
         
         if(!empty($keyword)) {
             $query->where('spot_name', 'LIKE', "%{$keyword}%")->orWhere('address', 'LIKE', "%{$keyword}%");
         }
         
-        $categories = $query->paginate(20);
+        $posts = $query->where('category_id', $category->id)->get();
         
-        return view('categories.index')->with(['categories' => $category, 'keyword' => $keyword]);
+        return view('categories.index')->with(['posts' => $posts,'categories' => $category, 'keyword' => $keyword]);
     }
     
 }
